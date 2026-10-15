@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Missions</title>
+    <link rel="shortcut icon" href="./assets/favIcon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <a href="#" class="logo" id="homeBtn">
+                <span>R</span>
+                React Missions
+            </a>
+        </div>
+
+        <h2 id="creator">By El Masnaoui</h2>
+
+        <div class="header-right">
+            <div class="header-progress">
+                <span data-i18n="courseProgress">Course Progress</span>
+                <strong id="progressText">0 / 26</strong>
+                <span id="headerPercentage" class="header-percentage">0%</span>
+                <div class="progress-bar">
+                    <div id="progressBar"></div>
+                </div>
+            </div>
+
+            <button id="langToggle" class="lang-btn">
+                🌐 <span id="langLabel">AR</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-title">
+                <span data-i18n="sidebarTitle">React Course</span>
+                <small data-i18n="sidebarSubtitle">Learning Path</small>
+            </div>
+            <nav id="sidebarMissions"></nav>
+        </aside>
+
+        <main class="main">
+            <!-- HOME PAGE -->
+            <section id="homePage">
+                <div class="hero">
+                    <div>
+                        <p class="eyebrow" data-i18n="heroEyebrow">REACT LEARNING PATH</p>
+                        <h1 data-i18n="heroTitle">Learn React<br><span>by building.</span></h1>
+                        <p data-i18n="heroDesc">Follow practical missions and build your React skills step by step.</p>
+                    </div>
+                    <div class="hero-progress">
+                        <div class="progress-circle" role="progressbar" aria-label="Course progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <span id="percentage">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="inspiration-card" aria-label="بطاقة إلهام يومية" lang="ar" dir="rtl">
+                    <p class="inspiration-message">كل يوم تدرسه هو استثمار في مستقبلك، وكل خطوة صغيرة تقربك من هدفك الكبير.</p>
+                    <div class="inspiration-verse">
+                        <span class="inspiration-mark" aria-hidden="true">“</span>
+                        <blockquote lang="ar" dir="rtl">وَأَنْ لَيْسَ لِلْإِنْسَانِ إِلَّا مَا سَعَىٰ (٣٩) وَأَنَّ سَعْيَهُ سَوْفَ يُرَىٰ (٤٠) ثُمَّ يُجْزَاهُ الْجَزَاءَ الْأَوْفَىٰ (٤١)</blockquote>
+                        <cite lang="ar" dir="rtl">سورة النجم، الآيات ٣٩–٤١</cite>
+                    </div>
+                </aside>
+
+                <div class="section-heading">
+                    <div>
+                        <h2 data-i18n="allMissions">All Missions</h2>
+                        <p id="missionCount">26 missions</p>
+                    </div>
+
+                    <div class="custom-dropdown" id="customDropdown">
+                        <button class="dropdown-trigger" id="dropdownTrigger">
+                            <span id="selectedOptionText" data-i18n="levelAll">All Levels</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-item active" data-value="all" data-i18n="levelAll">All Levels</div>
+                            <div class="dropdown-item" data-value="easy" data-i18n="levelEasy">Easy</div>
+                            <div class="dropdown-item" data-value="medium" data-i18n="levelMedium">Medium</div>
+                            <div class="dropdown-item" data-value="hard" data-i18n="levelHard">Hard</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="missions" id="missions"></div>
+            </section>
+
+            <!-- DETAIL PAGE -->
+            <section id="detailPage" class="detail-page hidden">
+                <div class="detail-header">
+                    <div>
+                        <span id="detailNumber" class="mission-number"></span>
+                        <span id="detailLevel" class="badge"></span>
+                    </div>
+                    <span id="detailStatus" class="status"></span>
+                </div>
+
+                <h1 id="detailTitle"></h1>
+                <p id="detailDescription" class="detail-description"></p>
+
+                <div class="lesson-tabs">
+                    <button class="tab-btn active" id="tabRead" data-i18n="readLesson">اقرأ الدرس</button>
+                    <button class="tab-btn" id="tabWatch" data-i18n="watchLesson">شاهد الدرس</button>
+                </div>
+
+                <!-- READ VIEW -->
+                <div id="readViewContent" class="detail-grid">
+                    <div class="detail-content">
+                        <section class="mission-section">
+                            <h2 data-i18n="objective">Objective</h2>
+                            <p id="detailObjective"></p>
+                        </section>
+                        <section class="mission-section">
+                            <h2 data-i18n="requirements">Requirements</h2>
+                            <ul id="detailRequirements"></ul>
+                        </section>
+                        <section class="mission-section">
+                            <h2 data-i18n="concepts">Concepts</h2>
+                            <div id="detailConcepts" class="concepts"></div>
+                        </section>
+                        <section class="mission-section">
+                            <h2 data-i18n="bonus">Bonus</h2>
+                            <p id="detailBonus"></p>
+                        </section>
+                    </div>
+
+                    <aside class="mission-info">
+                        <div class="info-box">
+                            <span data-i18n="infoDifficulty">Difficulty</span>
+                            <strong id="infoDifficulty"></strong>
+                        </div>
+                        <div class="info-box">
+                            <span data-i18n="infoMission">Mission</span>
+                            <strong id="infoMission"></strong>
+                        </div>
+                        <div class="info-box">
+                            <span data-i18n="infoStatus">Status</span>
+                            <strong id="infoStatus"></strong>
+                        </div>
+                        <button id="completeBtn" class="complete-btn">Mark as completed</button>
+                    </aside>
+                </div>
+
+                <!-- WATCH VIEW (DIRECT EMBED VIDEO PLAYER) -->
+                <div id="watchViewContent" class="watch-layout hidden">
+                    <div class="tasks-sidebar">
+                        <div class="tasks-header">
+                            <h3 data-i18n="lessonTasks">مهام الدرس</h3>
+                            <span id="taskPercentage" class="task-percentage">0%</span>
+                        </div>
+                        <div class="task-progress-bar">
+                            <div id="taskProgressBar"></div>
+                        </div>
+                        <p id="taskSummaryText" class="task-summary-desc"></p>
+                        <div id="tasksList" class="tasks-list"></div>
+                        <button id="completeAllTasksBtn" class="complete-all-btn" data-i18n="completeAllTasks">تحديد كل المهام كمكتملة</button>
+                    </div>
+
+                    <div class="watch-main">
+                        <div class="video-container-box">
+                            <div class="video-top-bar">
+                                <span data-i18n="videoLessonTitle">فيديو الدرس</span>
+                                <a id="youtubeOpenLink" href="#" target="_blank" data-i18n="openInYouTube">فتحه في YouTube</a>
+                            </div>
+                            <div class="video-responsive">
+                                <iframe id="youtubeIframe" src="" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div class="watch-info-grid">
+                            <div class="mission-section">
+                                <h2 data-i18n="dialogueGoal">هدف الحواري</h2>
+                                <p id="detailDialogueGoal"></p>
+                            </div>
+                            <div class="mission-section">
+                                <h2 data-i18n="whatYouWillLearn">ما ستتعلمه</h2>
+                                <p id="detailWhatYouWillLearn"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mission-navigation">
+                    <button id="prevBtn" class="nav-btn">← Previous Mission</button>
+                    <button id="nextBtn" class="nav-btn primary">Next Mission →</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
