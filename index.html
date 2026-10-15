@@ -73,6 +73,38 @@
                     </div>
                 </aside>
 
+                <section class="progress-summary" data-i18n-aria-label="learningProgress" aria-label="Learning progress">
+                    <article class="summary-card tasks-summary">
+                        <div class="summary-value" id="completedTasksCount" dir="ltr">0 / 0</div>
+                        <div class="summary-label" data-i18n="tasksCompletedLabel">Tasks completed</div>
+                        <span class="summary-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M8 4h8a2 2 0 0 1 2 2v14H6V6a2 2 0 0 1 2-2Z" />
+                                <path d="M9 4V2h6v2M9 10h6M9 14h6" />
+                            </svg>
+                        </span>
+                    </article>
+                    <article class="summary-card remaining-summary">
+                        <div class="summary-value" id="remainingLessonsCount">0</div>
+                        <div class="summary-label" data-i18n="lessonsRemainingLabel">Lessons remaining</div>
+                        <span class="summary-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M7 3h10M7 21h10M8 4c0 4 1 5 4 8-3 3-4 4-4 8m8-16c0 4-1 5-4 8 3 3 4 4 4 8" />
+                            </svg>
+                        </span>
+                    </article>
+                    <article class="summary-card completed-summary">
+                        <div class="summary-value" id="completedLessonsCount">0</div>
+                        <div class="summary-label" data-i18n="lessonsCompletedLabel">Lessons completed</div>
+                        <span class="summary-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="m8 12 2.5 2.5L16 9" />
+                            </svg>
+                        </span>
+                    </article>
+                </section>
+
                 <div class="section-heading">
                     <div>
                         <h2 data-i18n="allMissions">All Missions</h2>
@@ -112,6 +144,7 @@
                 <div class="lesson-tabs">
                     <button class="tab-btn active" id="tabRead" data-i18n="readLesson">اقرأ الدرس</button>
                     <button class="tab-btn" id="tabWatch" data-i18n="watchLesson">شاهد الدرس</button>
+                    <button class="tab-btn" id="tabMission" data-i18n="doMission">نفّذ المهمة</button>
                 </div>
 
                 <!-- READ VIEW -->
@@ -154,19 +187,6 @@
 
                 <!-- WATCH VIEW (DIRECT EMBED VIDEO PLAYER) -->
                 <div id="watchViewContent" class="watch-layout hidden">
-                    <div class="tasks-sidebar">
-                        <div class="tasks-header">
-                            <h3 data-i18n="lessonTasks">مهام الدرس</h3>
-                            <span id="taskPercentage" class="task-percentage">0%</span>
-                        </div>
-                        <div class="task-progress-bar">
-                            <div id="taskProgressBar"></div>
-                        </div>
-                        <p id="taskSummaryText" class="task-summary-desc"></p>
-                        <div id="tasksList" class="tasks-list"></div>
-                        <button id="completeAllTasksBtn" class="complete-all-btn" data-i18n="completeAllTasks">تحديد كل المهام كمكتملة</button>
-                    </div>
-
                     <div class="watch-main">
                         <div class="video-container-box">
                             <div class="video-top-bar">
@@ -191,9 +211,42 @@
                     </div>
                 </div>
 
+                <div id="missionViewContent" class="mission-brief hidden">
+                    <section class="mission-section mission-brief-intro">
+                        <p class="eyebrow" data-i18n="afterLessonEyebrow">AFTER THE LESSON</p>
+                        <h2 data-i18n="afterLessonTitle">Now put what you learned into practice</h2>
+                        <p data-i18n="afterLessonDescription">Build the mission yourself, use the checklist to verify your work, then mark it complete when you are finished.</p>
+                    </section>
+                    <section class="mission-section">
+                        <h2 data-i18n="objective">Objective</h2>
+                        <p id="missionBriefObjective"></p>
+                    </section>
+                    <section class="mission-section">
+                        <h2 data-i18n="missionChecklist">What to do</h2>
+                        <ul id="missionBriefRequirements"></ul>
+                    </section>
+                    <section class="tasks-sidebar mission-task-panel">
+                        <div class="tasks-header">
+                            <h3 data-i18n="missionTasks">Mission Tasks</h3>
+                            <span id="taskPercentage" class="task-percentage">0%</span>
+                        </div>
+                        <div class="task-progress-bar">
+                            <div id="taskProgressBar"></div>
+                        </div>
+                        <p id="taskSummaryText" class="task-summary-desc"></p>
+                        <div id="tasksList" class="tasks-list"></div>
+                        <button id="completeAllTasksBtn" class="complete-all-btn" data-i18n="completeAllTasks">Mark all tasks as completed</button>
+                    </section>
+                    <section class="mission-section">
+                        <h2 data-i18n="bonus">Bonus</h2>
+                        <p id="missionBriefBonus"></p>
+                    </section>
+                    <button id="missionCompleteBtn" class="complete-btn">Mark as completed</button>
+                </div>
+
                 <div class="mission-navigation">
-                    <button id="prevBtn" class="nav-btn">← Previous Mission</button>
-                    <button id="nextBtn" class="nav-btn primary">Next Mission →</button>
+                    <button id="prevBtn" class="nav-btn" data-i18n="prevMission">← Previous Mission</button>
+                    <button id="nextBtn" class="nav-btn primary" data-i18n="nextMission">Next Mission →</button>
                 </div>
             </section>
         </main>
